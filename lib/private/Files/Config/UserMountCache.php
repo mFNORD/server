@@ -93,7 +93,7 @@ class UserMountCache implements IUserMountCache {
 		if (is_array($mountProviderClasses)) {
 			$cachedMounts = array_filter($cachedMounts, function (ICachedMountInfo $mountInfo) use (
 				$mountProviderClasses
-			) {
+			): bool {
 				return in_array($mountInfo->getMountProvider(), $mountProviderClasses);
 			});
 		}
@@ -131,7 +131,7 @@ class UserMountCache implements IUserMountCache {
 			$this->removeFromCache($mount);
 			foreach ($mountsForUsers as $index => $mountForUser) {
 				/** @var ICachedMountInfo $mountForUser */
-				if ($mount->getRootId() == $mountForUser->getRootId() && $mount->getMountPoint() == $mountForUser->getMountPoint()) {
+				if ($mount->getRootId() === $mountForUser->getRootId() && $mount->getMountPoint() === $mountForUser->getMountPoint()) {
 					unset($mountsForUsers[$index]);
 					break;
 				}
