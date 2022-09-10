@@ -103,3 +103,7 @@
 
 AddDefaultCharset utf-8
 Options -Indexes
+
+<IfModule mod_headers.c>
+Header set Strict-Transport-Security "max-age=15552000" env=HTTPS
+</IfModule>
